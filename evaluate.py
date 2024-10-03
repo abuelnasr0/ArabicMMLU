@@ -43,7 +43,7 @@ def main():
     tokenizer = tokenizer_class.from_pretrained(args.base_model, use_auth_token=TOKEN)
     
     if 'mt0' in args.base_model or 'arat5' in args.base_model.lower():
-        model = AutoModelForSeq2SeqLM.from_pretrained(args.base_model, device_map="auto", load_in_8bit="xxl" in args.base_model)
+        model = AutoModelForSeq2SeqLM.from_pretrained(args.base_model, load_in_8bit="xxl" in args.base_model)
         from util_compute import predict_classification_mt0_by_letter as predict_classification
     else:
         model = model_class.from_pretrained(args.base_model, load_in_8bit=args.load_8bit, trust_remote_code=True, device_map="auto", use_auth_token=TOKEN)
