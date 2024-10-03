@@ -46,7 +46,8 @@ def main():
         model = AutoModelForSeq2SeqLM.from_pretrained(args.base_model, load_in_8bit="xxl" in args.base_model)
         from util_compute import predict_classification_mt0_by_letter as predict_classification
     else:
-        model = model_class.from_pretrained(args.base_model, load_in_8bit=args.load_8bit, trust_remote_code=True).to("cuda")
+        print(model_class)
+        model = model_class.from_pretrained(args.base_model, load_in_8bit=args.load_8bit, trust_remote_code=True)
         from util_compute import predict_classification_causal_by_letter as predict_classification
     
     # Load adapter if we use adapter
