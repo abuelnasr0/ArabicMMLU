@@ -49,6 +49,7 @@ def main():
     else:
         print(model_class)
         quantization_config = BitsAndBytesConfig(load_in_8bit=args.load_8bit)
+        print(quantization_config)
         model = model_class.from_pretrained(args.base_model, quantization_config=quantization_config, torch_dtype=torch.bfloat16)
         from util_compute import predict_classification_causal_by_letter as predict_classification
     
